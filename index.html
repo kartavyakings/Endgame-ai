@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Endgame.ai — Full Growth Strategy by Kartavya</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--red:#e8294a;--blue:#4aa8ff;--blue2:#7ec8ff;--blue3:rgba(74,168,255,.12);--mag:#c0349e;--white:#fff;--off:#f0f0ff;--muted:rgba(255,255,255,.42);--border:rgba(255,255,255,.06);--card:rgba(255,255,255,.03)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;overflow-x:hidden}
+.bg-canvas{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.wave{position:absolute;border-radius:50%;filter:blur(80px);opacity:.18;animation:wfloat 12s ease-in-out infinite alternate}
+.w1{width:700px;height:700px;background:radial-gradient(circle,#e8294a,#c0349e);top:-200px;right:-100px}
+.w2{width:500px;height:500px;background:radial-gradient(circle,#c0349e,#4aa8ff);bottom:-150px;left:-100px;animation-delay:-4s}
+.w3{width:400px;height:400px;background:radial-gradient(circle,#4aa8ff,transparent);top:40%;left:40%;animation-delay:-8s;opacity:.1}
+.particles{position:absolute;inset:0}
+.p{position:absolute;width:2px;height:2px;background:var(--blue2);border-radius:50%;opacity:.4;animation:twinkle 4s ease-in-out infinite}
+.scanline{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(74,168,255,.3),transparent);animation:scanline 8s linear infinite;z-index:1;pointer-events:none}
+@keyframes wfloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,30px) scale(1.1)}}
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.8}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.1em;background:linear-gradient(135deg,var(--red),var(--mag),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:10px;color:var(--muted);text-decoration:none;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--blue2)}
+.nav-cta{background:linear-gradient(135deg,var(--red),var(--mag));color:#fff;font-size:10px;font-weight:700;padding:6px 15px;border-radius:3px;text-decoration:none;text-transform:uppercase;letter-spacing:.1em}
+@media(max-width:680px){.nav-links{display:none}}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 0 60px}
+.hero-inner{max-width:780px;width:100%}
+.hero-tag{display:inline-block;background:var(--blue3);border:1px solid rgba(74,168,255,.25);border-radius:3px;padding:5px 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--blue2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:28px;animation:fadeUp .7s ease both}
+.collab-strip{display:flex;align-items:center;justify-content:center;margin-bottom:30px;animation:fadeUp .7s .05s ease both}
+.c-avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.c-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.c-avatar.eg{border:2.5px solid rgba(232,41,74,.7);box-shadow:0 0 20px rgba(232,41,74,.35)}
+.c-avatar.kk{border:2.5px solid rgba(74,168,255,.7);box-shadow:0 0 20px rgba(74,168,255,.35)}
+.c-connector{display:flex;align-items:center;padding:0 4px}
+.c-arrow{font-size:11px;line-height:1;color:var(--red);flex-shrink:0}
+.c-line{width:56px;height:2.5px;background:linear-gradient(90deg,var(--red),var(--mag),var(--blue))}
+@media(max-width:400px){.c-line{width:28px}}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,110px);line-height:.93;letter-spacing:.03em;margin-bottom:20px;animation:fadeUp .7s .12s ease both}
+.hero-title .r{color:var(--red);display:block}
+.hero-title .b{background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.hero-sub{font-size:15px;color:var(--muted);max-width:520px;margin:0 auto 36px;line-height:1.75;font-weight:300;animation:fadeUp .7s .2s ease both}
+.hero-sub strong{color:var(--off);font-weight:600}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .28s ease both}
+.btn-p{background:linear-gradient(135deg,var(--red),var(--mag));color:#fff;font-size:12px;font-weight:700;padding:13px 32px;border-radius:3px;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;transition:all .2s;box-shadow:0 4px 30px rgba(232,41,74,.3);display:inline-block}
+.btn-p:hover{transform:translateY(-2px)}
+.btn-g{background:transparent;color:var(--blue2);font-size:12px;font-weight:600;padding:13px 32px;border-radius:3px;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;border:1px solid rgba(74,168,255,.3);transition:all .2s;display:inline-block}
+.btn-g:hover{background:var(--blue3)}
+.hero-scroll{margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp .7s .4s ease both}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--red),transparent)}
+.scroll-txt{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
+.section{padding:80px 0}
+.sec-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--blue2);letter-spacing:.25em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::before{content:'';width:24px;height:1px;background:var(--blue2)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,56px);line-height:1;letter-spacing:.03em;margin-bottom:12px}
+.sec-title .accent{color:var(--red)}
+.sec-title .blue{background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sec-sub{font-size:13px;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:40px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(232,41,74,.2),rgba(74,168,255,.2),transparent)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:60px}
+@media(max-width:560px){.stats-row{grid-template-columns:1fr 1fr}}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:20px;text-align:center;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--mag))}
+.stat-card:hover{border-color:rgba(232,41,74,.3);transform:translateY(-3px)}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;background:linear-gradient(135deg,var(--red),var(--mag));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-l{font-size:9px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:4px;font-family:'Space Mono',monospace}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:540px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px;transition:all .25s}
+.pillar:hover{border-color:rgba(232,41,74,.22);transform:translateY(-3px)}
+.pillar-full{grid-column:1/-1}
+.pillar-num{font-family:'Bebas Neue',sans-serif;font-size:11px;color:var(--red);letter-spacing:.2em;margin-bottom:10px;opacity:.7}
+.pillar-ic{font-size:24px;margin-bottom:10px}
+.pillar-t{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;margin-bottom:8px}
+.pillar-tx{font-size:12px;color:var(--muted);line-height:1.65}
+.pillar-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.ptag{background:rgba(74,168,255,.08);border:1px solid rgba(74,168,255,.18);border-radius:2px;padding:3px 8px;font-size:9px;font-weight:600;color:var(--blue2);letter-spacing:.08em;text-transform:uppercase}
+.opp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.opp-grid{grid-template-columns:1fr}}
+.opp{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:18px;transition:all .25s}
+.opp:hover{border-color:rgba(74,168,255,.22);transform:translateY(-2px)}
+.opp-ic{font-size:20px;margin-bottom:8px}
+.opp-t{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.04em;margin-bottom:5px}
+.opp-tx{font-size:11px;color:var(--muted);line-height:1.6}
+.roadmap{position:relative;padding-left:40px}
+.roadmap::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--red),var(--mag),var(--blue),transparent)}
+.rphase{position:relative;margin-bottom:36px}
+.rphase::before{content:'';position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--mag));box-shadow:0 0 12px rgba(232,41,74,.5)}
+.rph-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
+.rph-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;margin-bottom:8px}
+.rph-items{display:flex;flex-wrap:wrap;gap:6px}
+.rph-item{background:rgba(232,41,74,.07);border:1px solid rgba(232,41,74,.18);border-radius:3px;padding:4px 10px;font-size:10px;color:rgba(255,255,255,.65)}
+.platform-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.plat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;transition:all .25s}
+.plat:hover{border-color:rgba(74,168,255,.3);transform:translateY(-2px)}
+.plat-logo{width:36px;height:36px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#111}
+.plat-logo img{width:100%;height:100%;object-fit:cover;display:block}
+.plat-name{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.04em;color:var(--off)}
+.creator-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.creator-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 14px;text-align:center;transition:all .25s}
+.creator-card:hover{border-color:rgba(232,41,74,.28);transform:translateY(-3px)}
+.creator-photo{width:66px;height:66px;border-radius:50%;overflow:hidden;margin:0 auto 12px;border:2px solid rgba(255,255,255,.1)}
+.creator-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-name{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.03em;margin-bottom:3px;line-height:1.2}
+.creator-role{font-size:9px;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:.08em}
+.pkg-wrap{max-width:540px;margin:0 auto}
+.pkg-card{background:linear-gradient(135deg,rgba(232,41,74,.08),rgba(192,52,158,.07),rgba(74,168,255,.05));border:1px solid rgba(232,41,74,.28);border-radius:14px;padding:44px 36px;text-align:center;position:relative;overflow:hidden}
+.pkg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--mag),var(--blue))}
+.pkg-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(232,41,74,.1);border:1px solid rgba(232,41,74,.25);border-radius:3px;padding:5px 14px;font-family:'Space Mono',monospace;font-size:9px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px}
+.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:1;background:linear-gradient(135deg,var(--red),var(--mag));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.pkg-period{font-size:12px;color:var(--muted);margin-bottom:32px;font-style:italic}
+.pkg-items{display:flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:32px}
+.pkg-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:12px 16px;font-size:13px;display:flex;align-items:center;gap:10px}
+.pkg-dot{color:var(--red);font-size:15px;flex-shrink:0}
+.about-box{background:linear-gradient(135deg,rgba(232,41,74,.06),rgba(74,168,255,.04));border:1px solid rgba(232,41,74,.18);border-radius:10px;padding:36px;position:relative;overflow:hidden}
+.about-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--mag),var(--blue))}
+.about-name{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.06em;margin-bottom:4px;background:linear-gradient(135deg,var(--off),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.about-role{font-size:11px;color:var(--blue2);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;font-family:'Space Mono',monospace}
+.about-bio{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:18px}
+.about-tags{display:flex;flex-wrap:wrap;gap:7px}
+.atag{background:var(--blue3);border:1px solid rgba(74,168,255,.2);border-radius:3px;padding:5px 12px;font-size:10px;font-weight:600;color:var(--blue2)}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.clink{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:4px;padding:7px 14px;font-size:10px;color:var(--muted);text-decoration:none;transition:all .2s;font-weight:500}
+.clink:hover{border-color:var(--red);color:var(--off)}
+.cta-box{text-align:center;padding:80px 0}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,80px);letter-spacing:.04em;line-height:.95;margin-bottom:20px}
+.cta-title .r{color:var(--red)}
+.cta-title .b{background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-sub{font-size:14px;color:var(--muted);max-width:420px;margin:0 auto 36px;line-height:1.7}
+.fade{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.fade.visible{opacity:1;transform:translateY(0)}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;background:linear-gradient(135deg,var(--red),var(--mag),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.footer-sub{font-size:10px;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:.1em}
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+<div class="bg-canvas">
+  <div class="wave w1"></div><div class="wave w2"></div><div class="wave w3"></div>
+  <div class="particles" id="particles"></div>
+</div>
+<nav>
+  <div class="nav-logo">Endgame.ai &times; Kartavya</div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a><a href="#strategy">Strategy</a>
+    <a href="#community">Community</a><a href="#roadmap">Roadmap</a>
+    <a href="#experience">Experience</a><a href="#package">Package</a><a href="#about">About</a>
+  </div>
+  <a href="mailto:kartavya311@gmail.com" class="nav-cta">Let's Talk</a>
+</nav>
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Full Growth Strategy Proposal &mdash; 2026</div>
+      <div class="collab-strip">
+        <div class="c-avatar eg"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCABQAFADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzaiiigAoop8UUk8ixwxtJIxwqoMk/QUAMoq9/Y2qf9A29/wC/D/4Uf2Lqn/QNvf8Avw/+FAFGir39i6p/0Db3/vw/+FVZ7ea2k8u4hkhkxnbIpU/kaAI6KKKACiiigAAJPAzW74MBHizTSQQPN6/gau/DgZ8XW+Rn93J/6DXpXjMAeE9SIGD5Xp7igDc3L/eH50bl/vD86+cdzf3j+dJub1P50AfR+5f7w/OvHPiUc+K3wc/uU/ka5Pc3qfzpCSetABRRRQAUUUUASQTzW0okt5ZIpBwGjYqfzFdD4Vv7y88SWFvd3dxcQSSYeOWRmVhg8EE4NM8C2NtqPiWG3vIVmhZHJRunA4r0HxBoWmaPol3qGnWcdteW6b4pUzlDkcigDoP7H0z/AKB1n/34X/Cl/sfS/wDoHWf/AH4X/CvGP+Ev1/8A6Ck/6f4Uf8Jhr/8A0FJ/0/woA9n/ALH0v/oHWf8A34X/AAryT4iQQ23id47eKOJPKQ7Y1Cjp6Cqf/CYa/wD9BSf9P8Ky7+/utSuTcXszTTEBdzdcCgCtRRRQAUUUUAdX8N/+Rut/+ucn/oNevahZQ6jZS2lyC0Mq7WAODj614PoWrzaHqSX1vHHJIisoWTOORjtXU/8ACz9V/wCfOy/J/wD4qgDrP+Fe+H/+feb/AL/NR/wr3w//AM+83/f5q5P/AIWfqv8Az52X5P8A/FUf8LP1X/nzsvyf/wCKoA6z/hXvh/8A595v+/zV5z410q10fX2tLJGSERq2GYscn3ra/wCFn6r/AM+dl+T/APxVcvr2sz67qJvbiOOOQqF2x5xx9aAM2iiigAooooAKKKKACiiigAooooAKKKKAP//Z" alt="Endgame.ai"></div>
+        <div class="c-connector"><span class="c-arrow">&#9664;</span><div class="c-line"></div><span class="c-arrow">&#9654;</span></div>
+        <div class="c-avatar kk"><img src="data:image/jpeg;base64,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" alt="Kartavya"></div>
+      </div>
+      <h1 class="hero-title"><span class="r">Endgame.ai</span><span class="b">Growth Blueprint</span></h1>
+      <p class="hero-sub">A complete community, content and growth strategy to make Endgame.ai the most <strong>relatable, player-first chess platform</strong> in the world &mdash; not just another chess website.</p>
+      <div class="hero-btns">
+        <a href="#overview" class="btn-p">&#9660; Explore the Plan</a>
+        <a href="mailto:kartavya311@gmail.com" class="btn-g">&#128231; Get in Touch</a>
+      </div>
+      <div class="hero-scroll"><div class="scroll-line"></div><div class="scroll-txt">Scroll to explore</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade" id="overview">
+    <div class="sec-label">Platform Analysis</div>
+    <div class="sec-title">Where Endgame.ai <span class="accent">Is Right Now</span></div>
+    <p class="sec-sub">Endgame.ai has the boldest vision in chess &mdash; but vision alone doesn't retain users. Here's the honest breakdown of strengths, gaps and the opportunity ahead.</p>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-n">[X]K</div><div class="stat-l">Platform Users</div></div>
+      <div class="stat-card"><div class="stat-n">[X]</div><div class="stat-l">Creator Partners</div></div>
+      <div class="stat-card"><div class="stat-n">0</div><div class="stat-l">Discord Community</div></div>
+      <div class="stat-card"><div class="stat-n">&#9733;</div><div class="stat-l">Growth Potential</div></div>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><div class="pillar-num">01 &mdash; ADVANTAGE</div><div class="pillar-ic">&#9889;</div><div class="pillar-t">Bold Vision &amp; AI Integration</div><div class="pillar-tx">Endgame.ai is positioning itself at the intersection of chess and AI &mdash; a genuinely untapped angle. The branding is sharp, the concept is modern and the product has real potential to stand out.</div><div class="pillar-tags"><span class="ptag">AI-First</span><span class="ptag">Modern Brand</span><span class="ptag">Unique Angle</span></div></div>
+      <div class="pillar"><div class="pillar-num">02 &mdash; GAP</div><div class="pillar-ic">&#128270;</div><div class="pillar-t">Community Infrastructure</div><div class="pillar-tx">No Discord. No community events. No retention loop. Users arrive but have no reason to stay. Chess.com retains users with puzzles, clubs and tournaments daily &mdash; Endgame needs its own engine.</div><div class="pillar-tags"><span class="ptag">No Discord</span><span class="ptag">No Events</span><span class="ptag">Low Retention</span></div></div>
+      <div class="pillar"><div class="pillar-num">03 &mdash; OPPORTUNITY</div><div class="pillar-ic">&#127919;</div><div class="pillar-t">Content &amp; Creator Pipeline</div><div class="pillar-tx">The chess content space is exploding. Endgame.ai can become the go-to platform that creators recommend &mdash; but only if the content strategy is consistent and hook-driven.</div><div class="pillar-tags"><span class="ptag">Short-Form</span><span class="ptag">Creator Deals</span><span class="ptag">Viral Formats</span></div></div>
+      <div class="pillar"><div class="pillar-num">04 &mdash; THREAT</div><div class="pillar-ic">&#9888;</div><div class="pillar-t">Chess.com &amp; Lichess Dominance</div><div class="pillar-tx">Chess.com has 100M+ users. Competing on features alone is a losing game. Endgame must win on community feel, creator relationships and bold content.</div><div class="pillar-tags"><span class="ptag">Incumbent Risk</span><span class="ptag">Loyalty Gap</span></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade" id="strategy">
+    <div class="sec-label">Growth Strategy</div>
+    <div class="sec-title">The <span class="accent">9 Pillars</span></div>
+    <p class="sec-sub">Every pillar works together &mdash; interconnected systems that compound over time.</p>
+    <div class="pillars">
+      <div class="pillar"><div class="pillar-num">01</div><div class="pillar-ic">&#127984;</div><div class="pillar-t">Discord Community Build-Up</div><div class="pillar-tx">Full server architecture, roles, channels, onboarding flow, moderation system and community guidelines designed to retain and engage users daily</div><div class="pillar-tags"><span class="ptag">Channels</span><span class="ptag">Roles</span><span class="ptag">Onboarding</span><span class="ptag">Events</span></div></div>
+      <div class="pillar"><div class="pillar-num">02</div><div class="pillar-ic">&#127775;</div><div class="pillar-t">Engaging User Events</div><div class="pillar-tx">Weekly tournaments, puzzle races, creator battles, community challenges, leaderboards and prize events that make users want to come back</div><div class="pillar-tags"><span class="ptag">Tournaments</span><span class="ptag">Challenges</span><span class="ptag">Leaderboards</span></div></div>
+      <div class="pillar"><div class="pillar-num">03</div><div class="pillar-ic">&#128241;</div><div class="pillar-t">Content Strategy</div><div class="pillar-tx">Short-form and long-form content calendar, creator collaboration direction, viral format research and a content engine that grows Endgame's reach daily</div><div class="pillar-tags"><span class="ptag">Short-Form</span><span class="ptag">Long-Form</span><span class="ptag">Creator Collabs</span></div></div>
+      <div class="pillar"><div class="pillar-num">04</div><div class="pillar-ic">&#128231;</div><div class="pillar-t">Email Marketing &amp; Newsletter</div><div class="pillar-tx">Structured email campaigns, weekly newsletters, user onboarding sequences and retention emails that keep users engaged beyond the platform</div><div class="pillar-tags"><span class="ptag">Weekly Newsletter</span><span class="ptag">Retention Emails</span><span class="ptag">Campaigns</span></div></div>
+      <div class="pillar"><div class="pillar-num">05</div><div class="pillar-ic">&#128200;</div><div class="pillar-t">Social Media Management</div><div class="pillar-tx">Instagram, TikTok, Twitter/X and YouTube strategy with consistent posting, community interaction and brand voice that feels human and bold</div><div class="pillar-tags"><span class="ptag">Instagram</span><span class="ptag">TikTok</span><span class="ptag">YouTube</span><span class="ptag">Twitter</span></div></div>
+      <div class="pillar"><div class="pillar-num">06</div><div class="pillar-ic">&#127891;</div><div class="pillar-t">Learning Materials</div><div class="pillar-tx">Structured lessons, puzzle series, opening repertoires, endgame theory content and educational resources that make Endgame a genuine place to improve</div><div class="pillar-tags"><span class="ptag">Lessons</span><span class="ptag">Puzzles</span><span class="ptag">Openings</span></div></div>
+      <div class="pillar"><div class="pillar-num">07</div><div class="pillar-ic">&#128176;</div><div class="pillar-t">Premium Membership Structure</div><div class="pillar-tx">Clear free vs premium tiers, exclusive perks for paying members, member-only events, badges and a premium experience that feels worth every dollar</div><div class="pillar-tags"><span class="ptag">Free Tier</span><span class="ptag">Premium</span><span class="ptag">Exclusive Perks</span></div></div>
+      <div class="pillar"><div class="pillar-num">08</div><div class="pillar-ic">&#127760;</div><div class="pillar-t">Promotion &amp; Creator Strategy</div><div class="pillar-tx">Structured creator partnership framework, sponsorship positioning, affiliate programmes and a promotion engine that converts creator audiences into platform users</div><div class="pillar-tags"><span class="ptag">Creator Deals</span><span class="ptag">Affiliate</span><span class="ptag">Sponsorships</span></div></div>
+      <div class="pillar pillar-full"><div class="pillar-num">09</div><div class="pillar-ic">&#127912;</div><div class="pillar-t">Branding &amp; UI Strategy</div><div class="pillar-tx">Visual identity consistency across all platforms, UI/UX recommendations, brand voice guidelines and a design language that feels bold, modern and distinctly Endgame</div><div class="pillar-tags"><span class="ptag">Brand Voice</span><span class="ptag">Visual Identity</span><span class="ptag">UI/UX</span><span class="ptag">Design System</span></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade" id="community">
+    <div class="sec-label">Community Architecture</div>
+    <div class="sec-title">The <span class="blue">Discord Engine</span></div>
+    <p class="sec-sub">The most retained chess platforms have thriving communities. Here's exactly how I'd build Endgame's.</p>
+    <div class="opp-grid">
+      <div class="opp"><div class="opp-ic">&#127968;</div><div class="opp-t">Welcome System</div><div class="opp-tx">Onboarding flow, role assignment, rating verification and first-day experience that hooks new members instantly</div></div>
+      <div class="opp"><div class="opp-ic">&#9823;</div><div class="opp-t">Chess Channels</div><div class="opp-tx">Game analysis, puzzle rooms, opening theory, endgame study and live game discussion for every skill level</div></div>
+      <div class="opp"><div class="opp-ic">&#127942;</div><div class="opp-t">Events &amp; Tournaments</div><div class="opp-tx">Weekly community tournaments, puzzle races, blitz battles and monthly championship events</div></div>
+      <div class="opp"><div class="opp-ic">&#128101;</div><div class="opp-t">Creator Rooms</div><div class="opp-tx">Dedicated spaces for partner creators to host AMAs, analysis sessions and exclusive content drops</div></div>
+      <div class="opp"><div class="opp-ic">&#128221;</div><div class="opp-t">Feedback Loop</div><div class="opp-tx">Direct user feedback channels, feature requests and a system that makes users feel heard and valued</div></div>
+      <div class="opp"><div class="opp-ic">&#128176;</div><div class="opp-t">Premium Tier</div><div class="opp-tx">Exclusive premium channels, early access rooms and VIP perks only for paying members</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade">
+    <div class="sec-label">Content Strategy</div>
+    <div class="sec-title">Content <span class="accent">Diversification</span></div>
+    <p class="sec-sub">What Endgame should be producing, how often, and why each format serves the growth engine.</p>
+    <div class="opp-grid">
+      <div class="opp"><div class="opp-ic">&#128248;</div><div class="opp-t">Short-Form Reels</div><div class="opp-tx">Daily Instagram/TikTok/YouTube Shorts &mdash; hook-first formats, chess moments and viral storytelling</div></div>
+      <div class="opp"><div class="opp-ic">&#127909;</div><div class="opp-t">Long-Form YouTube</div><div class="opp-tx">Weekly YouTube videos &mdash; GM analysis, platform features, creator interviews and documentary content</div></div>
+      <div class="opp"><div class="opp-ic">&#128293;</div><div class="opp-t">Viral Chess Moments</div><div class="opp-tx">Clip strategy for brilliant moves, blunders and shocking game moments from platform matches</div></div>
+      <div class="opp"><div class="opp-ic">&#129504;</div><div class="opp-t">Educational Content</div><div class="opp-tx">Puzzle content, opening traps, endgame lessons &mdash; making Endgame.ai a genuine learning destination</div></div>
+      <div class="opp"><div class="opp-ic">&#127917;</div><div class="opp-t">Behind the Platform</div><div class="opp-tx">Building in public, feature reveals and team content that builds authentic audience trust</div></div>
+      <div class="opp"><div class="opp-ic">&#128247;</div><div class="opp-t">Memes &amp; Culture</div><div class="opp-tx">Chess meme posts and relatable content that makes Endgame feel like a real community</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade" id="roadmap">
+    <div class="sec-label">Execution Plan</div>
+    <div class="sec-title">The <span class="blue">Roadmap</span></div>
+    <p class="sec-sub">A phased approach &mdash; building the foundation first, then scaling everything that works.</p>
+    <div class="roadmap">
+      <div class="rphase"><div class="rph-label">Phase 01 &mdash; Month 1</div><div class="rph-title">Foundation</div><div class="rph-items"><span class="rph-item">Discord Server Setup</span><span class="rph-item">Brand Voice Guidelines</span><span class="rph-item">Social Media Audit</span><span class="rph-item">Content Calendar</span><span class="rph-item">Email System Setup</span><span class="rph-item">First Newsletter</span></div></div>
+      <div class="rphase"><div class="rph-label">Phase 02 &mdash; Month 2-3</div><div class="rph-title">Growth Engine</div><div class="rph-items"><span class="rph-item">Content Publishing</span><span class="rph-item">Community Events Launch</span><span class="rph-item">Creator Partnerships</span><span class="rph-item">Social Media Growth</span><span class="rph-item">Learning Materials</span><span class="rph-item">Premium Tier Design</span></div></div>
+      <div class="rphase"><div class="rph-label">Phase 03 &mdash; Month 4+</div><div class="rph-title">Scale &amp; Dominate</div><div class="rph-items"><span class="rph-item">Premium Launch</span><span class="rph-item">Affiliate Programme</span><span class="rph-item">Viral Content Campaigns</span><span class="rph-item">Community Milestones</span><span class="rph-item">Competitor Response Strategy</span><span class="rph-item">Full Growth Review</span></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade">
+    <div class="sec-label">Additional Services</div>
+    <div class="sec-title">Chess Video <span class="accent">Editing</span></div>
+    <p class="sec-sub">Beyond strategy &mdash; production-level chess video editing for all of Endgame's content needs.</p>
+    <div class="opp-grid">
+      <div class="opp"><div class="opp-ic">&#127916;</div><div class="opp-t">Short-Form Editing</div><div class="opp-tx">Hook-focused reels and shorts built for retention, captions and chess-specific visual storytelling</div></div>
+      <div class="opp"><div class="opp-ic">&#127909;</div><div class="opp-t">Long-Form &amp; Documentary</div><div class="opp-tx">Cinematic long-form chess videos, GM interviews, platform highlight reels and documentary-style content</div></div>
+      <div class="opp"><div class="opp-ic">&#128247;</div><div class="opp-t">Thumbnail Design</div><div class="opp-tx">Click-worthy thumbnails designed specifically for chess content audiences</div></div>
+    </div>
+    <div style="margin-top:16px;background:rgba(74,168,255,.05);border:1px solid rgba(74,168,255,.14);border-radius:5px;padding:12px 16px;font-size:12px;color:rgba(255,255,255,.5)">&#128279; Chess editing samples: <a href="https://drive.google.com/drive/folders/1eW0BF09fa__Qqen0C6IYeR40lmQ_EarD" target="_blank" style="color:var(--blue2);text-decoration:none">drive.google.com/drive/folders/1eW0BF09fa__Qqen0C6IYeR40lmQ_EarD</a></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade" id="experience">
+    <div class="sec-label">Experience</div>
+    <div class="sec-title">Platforms &amp; <span class="blue">Creators</span></div>
+    <p class="sec-sub">Hands-on inside the chess content industry &mdash; not just an outside editor.</p>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--red);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px">PLATFORMS WORKED WITH</div>
+    <div class="platform-row">
+      <div class="plat"><div class="plat-logo"><img src="data:image/jpeg;base64,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" alt="ChessMind.ai"></div><span class="plat-name">ChessMind.ai</span></div>
+      <div class="plat"><div class="plat-logo"><img src="data:image/jpeg;base64,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" alt="Chessvia.ai"></div><span class="plat-name">Chessvia.ai</span></div>
+      <div class="plat"><div class="plat-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCABQAFADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzqlpKWkQFLSUtAhaKKWgApwpop4oJY4U9eopop69RSIZToopybQ6lwSueQDgkUzYSrtlpd3fIz28YZFOCSwHNN062jvNQjgeQxRuTz39h9a7mztIrKBYIFIQHPJyST3NZznynBi8X7FcsdzibzS7uxjWS4jCoTjIYHmls9JvL2HzYI1KZ25Lgc1rGS512+a0mUwW0TFmCrzxwMk96ha+k0K8eyhZJoAwb5x8wyBkZFHM9uolXquPIrc+/lYgHh7Uf+eUf/fwVSuLaW1naGZQrrjIBzXX6xqBsLNZYdjO7ALu6Y65rmcXOrXU0uEMgXe3OAAPSiMm9WRh69WouepZRKgp69RTRT16iqOtlGp7P7P8AaU+1+Z5HO7y/ve1QVPGQTEzxAxRsA5Veoznn361TNp7Fi2e4uEbTrVFZJpN43D5uPftwK7DSraazsEhnk8xwSc5zgema5W8vrePUIrjSo/ICLjG3GTz2+ldFpOrJd2TSXDxxyRkhxnHHrisZ3seRjVUlBNRsuve5q1W+w2u2UeQn70kuSMls+5rJ0rXnvdQMEqIiPny8dcjsfXit+s2nE86pTqUZcstDmLa2bQr3zrsb4GUojoN3PB5HbgVBPG2sapK1kMDYD8529MCrMUsmr6i1tfgxRRhmWNflIOccnvVO8jNhqbxWUskYIUBg3rjjP1rVb+Z6sG3PX47fIglZFgWDyFWaN23yA53e1RL1FTXMU1rcSwyOC5++VbIbvUS9RVHVG1roz6dk7SATg9qSirOo04LuytdRtp4YJDGi/OrkE7vUVq3OmRa3LHe2cqJG3yyBlwQR/WuYq7Zand2MbJbyBUY5IKg81Di90clWhLSdJ+8tNex2xtbcpGhhQrEQU4+7jpiobvU7W0uEhmch354GQPrXMDxBqP8Az1T/AL9iqdzcS3c5mnbc5wM4xUKm+pwQy+bf716HY6vp/wDaFsEUqsqHKs36iuZuTcQINPn2KsT7hx3PfPpzUia5qCqF85TgYyUBNVJppLmZpZm3O3U04xa3N8PQqU/dnZrp6iFdrEAg4OMjoacvUU0U9eoqzqZnUUUtUdIUtJS0CFFPFNFPFIljhTxTRTxSM2OFPXqKaKevUUjNn//Z" alt="OutpostChess"></div><span class="plat-name">OutpostChess</span></div>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--red);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px">CREATORS WORKED WITH</div>
+    <div class="creator-grid">
+      <div class="creator-card"><div class="creator-photo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDmnhlix5kbpnkbhilhTzJVVmVAT1boKsX88lzctL/B0UA54qOOMM212wD3weKJVGnYUKUXFu+qLcmk/aIZcXUL4G5thycVQg09toKI7Lzg4Fa9h9mtbaXMjGaRCCApxmoYrnyIhuQqiA5bB4rNtrY2gk/iIobASWz2yxx7VOWc/eH40eWtijIzhAOSScisC+1CW4mfaWVCchQf51TJdhgsfpWi8zOWqsjoV1W3V/vkjPZa6uy1K0vuLeZWYdV6H8q8y2nr2qVZWhZXiZkkU8MpwRUTgpDhLlPVKSsbw3q51O0ZZiPtEXDH+8Oxrarlas7G6dxKUUlKKBi0UYoqgOX0688myJmRjGrbVYDP4Vo2l1HdBjGrgL1LDFZwulRP7PNqxP3D83U+v9a1bWBbaBIl7dT6n1p1Ut7asypN7X0ROBWf4ifZos5Hcqp+hNaArN8SKX0K42jptJ+mazh8SNZbHIafZfa7xYyfl6nFdTFoNnsGYsn1yaxvC0Za6kkZWxjG7tXap93CrmumTd7EU4q12cvqHh3Cq1oAuOWBPWuVkLEkYxg9PSvUnyR0xWFf2lqTIwijWVupAGTTUrbhKmnsYHhWdodcgAOFlyjD1yP8QK9DrznSLWU69bxKMOkm4kdABzmvR6zqbihsJQKKKixoLRSUUAYGng3T/bJY1VsbV29x6/0rRpiKqIqKMKowBTgazlK7uEVZWHg0SxrNA8TjcrqVIoFLmkhnOabG9lHJZsdroxw68jB5/OraLeCRfJluVU85fBBNXJEQXedv3xkn3FW5cKhG9zkcDNdifUjlMy7lluooIyzx+bnlW6kVUbT2jbdLGioBnduywP1PWr935S2kZDqWU/KBVhniNtvMYVttJMbjqY3h+AjXJJn6+WQPrXWVz2hqxvpSeAAT/SugrOW4rBSZopKkYuaKbmigZTpRTM80tYlEgpQaYDUdzdQ2kXmTuEXp9T7U0ribHzIMBz/Ccn6UkkZKKyHgfe4yce1Yl74kXBS0j3ZHLyD+QrSsrsLEnmHCsAQxrqjGSWpnzJ6FyaC2Nrv+0g8Z2hOaqELHZkMxOeeewqWdFyHNwyoP4MjBrHvrv7S/kwHK/wARFUx7E2j67C189lJGELMQkg/iPoa6PNcJLYKIJrkErJEw5H4Vcs/FUy4W7iWUD+NPlb8ulJ076xI5rOzOvzTSaz7XWLG7wI5wrn+B/lNXc1i01uaLUdmimZoqRlXNMmnjt4jJK4VB1JqSKN5pVSMZZjiua8SpewX/AJF2mxV5jCnKsPXPeqp0nN+Qpz5RNQ1+WT5LUGJP7/8AEf8ACsme4mnKmaV5COm45xUbcn8aTvXbGEY7HM5N7js4rqtHZbvTRGcF4vlIPcdq5QdCKu6bftYzeZkkHhl9qcldBF2ZuyaZb7W5mUk/cDHH/wCqrFpYpCmQoGOgrSttt1Cs0RDowyCKg1W7h0u28yX5nb7kY6t/9asbNml7amJrZW3thAD+8mYMwHYD/wCvXNLzn61PdXU15cvPM3zMeg6CogMVvFWRk3cKvWWq3lkQI5Syf3H5H/1qpUtNxT3BOx2ljrVtc24eV1gfOCjH+VFcXiisHQRp7Vnard2isGl8xjE+9gGwhRRnt97Jxj0NczrWrXGsXhuLnAwNqIvRV9KXUXIRUXpnJrNJq6WkS8Soxnyx6CnpRTQeMU6tTnCjqMUUUAauiazLpTv8vmwt1QnHPYiqd9dzX9y1xcNl26AdFHoKgxSHNFluFxKKWtrRfD82rWtzPEcmLG1CcBz3Bbtx+dFgMWg/eqSZ2dgGAG35QAMAD0qLPzmmApoo5opAXX/eZ3c5rPaiil0JTu2NU1IKKKEUFKKKKYCUUUUAWLKFZ7uOJ8hWODjrXqOiaTHDpoto7idYTklQVGc9cnGaKKyqNnRSScbjG8FaKVwIJF9xIa5bxH4cstNieS3abIHRmBH8qKKiLdzSKTTucoOlFFFdJxn/2Q==" alt="GM Mauricio Flores"></div><div class="creator-name">GM Mauricio Flores</div><div class="creator-role">Grandmaster</div></div>
+      <div class="creator-card"><div class="creator-photo"><img src="data:image/jpeg;base64,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" alt="FM Raheem Glaves"></div><div class="creator-name">FM Raheem Glaves</div><div class="creator-role">FIDE Master</div></div>
+      <div class="creator-card"><div class="creator-photo"><img src="data:image/jpeg;base64,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" alt="The Chess Nerd"></div><div class="creator-name">The Chess Nerd</div><div class="creator-role">Chess Creator</div></div>
+      <div class="creator-card"><div class="creator-photo"><img src="data:image/jpeg;base64,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" alt="Alexandra Chess"></div><div class="creator-name">Alexandra Chess</div><div class="creator-role">Chess Creator</div></div>
+      <div class="creator-card"><div class="creator-photo"><img src="data:image/jpeg;base64,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" alt="Sadistic Tushi"></div><div class="creator-name">Sadistic Tushi</div><div class="creator-role">Chess Creator</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade" id="package">
+    <div class="sec-label">Growth Package</div>
+    <div class="sec-title">Everything <span class="accent">Included</span></div>
+    <p class="sec-sub">One package. One person. Every skill Endgame.ai needs to grow.</p>
+    <div class="pkg-wrap"><div class="pkg-card">
+      <div class="pkg-badge">&#9650; FULL GROWTH PACKAGE</div>
+      <div class="pkg-price">$500</div>
+      <div class="pkg-period">per month &mdash; complete community + content + growth system</div>
+      <div class="pkg-items">
+        <div class="pkg-item"><span class="pkg-dot">✦</span>Discord Community Build &amp; Management</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>10 Short-Form Reels + 1 Bonus Reel</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>1 Long-Form Video</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>Content Strategy &amp; Monthly Planning</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>Weekly Newsletter &amp; Email Marketing</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>Community Events &amp; Tournaments</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>Thumbnail Design</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>Hook-Focused Chess Editing</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>Social Media Growth Strategy</div>
+        <div class="pkg-item"><span class="pkg-dot">✦</span>On-Time Delivery. Always.</div>
+      </div>
+      <a href="mailto:kartavya311@gmail.com" class="btn-p">&#128231; Lock In This Package</a>
+    </div></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section fade" id="about">
+    <div class="sec-label">Who's Behind This Plan</div>
+    <div class="sec-title">About <span class="accent">Kartavya</span></div>
+    <div class="about-box">
+      <div class="about-name">Kartavya Kumar</div>
+      <div class="about-role">Chess Content &amp; Community Specialist</div>
+      <div class="about-bio">A 2000+ rated chess player with hands-on experience building and growing chess platforms, communities and content strategies. I've worked inside ChessMind.ai, Chessvia.ai and OutpostChess, and directly with top chess creators including The Chess Nerd, Sadistic Tushi and Alexandra Chess. I don't just understand chess &mdash; I understand chess audiences, what keeps them engaged and what makes a platform feel like home.</div>
+      <div class="about-tags">
+        <span class="atag">&#9823; 2000+ Rated</span><span class="atag">&#127984; Community Builder</span>
+        <span class="atag">&#128200; Growth Strategist</span><span class="atag">&#127916; Chess Editor</span>
+        <span class="atag">&#128221; Copywriter</span><span class="atag">&#128176; Sales Specialist</span>
+      </div>
+      <div class="contact-row">
+        <a href="mailto:kartavya311@gmail.com" class="clink">&#128231; kartavya311@gmail.com</a>
+        <a href="https://discord.com/users/kartavyakings" class="clink">&#127984; kartavyakings</a>
+        <a href="https://chess.com/member/kartavyakings" class="clink">&#9823; kartavyakings</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta-box fade">
+    <div class="cta-title"><span class="r">Ready to</span><br><span class="b">Make the Move?</span></div>
+    <p class="cta-sub">The plan is here. The strategy is clear. The only question is whether Endgame.ai is ready to build the community and content engine it deserves.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="mailto:kartavya311@gmail.com" class="btn-p">&#128231; Start the Conversation</a>
+      <a href="https://discord.com/users/kartavyakings" class="btn-g">&#127984; Discord: kartavyakings</a>
+    </div>
+  </section>
+
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-logo">Kartavya Kumar &times; Endgame.ai</div>
+    <div class="footer-sub">&copy; 2026 &mdash; Chess Community &amp; Content Specialist &mdash; kartavya311@gmail.com</div>
+  </div>
+</footer>
+<script>
+const c=document.getElementById('particles');
+for(let i=0;i<30;i++){const p=document.createElement('div');p.className='p';p.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${3+Math.random()*4}s`;c.appendChild(p);}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.fade').forEach(f=>obs.observe(f));
+</script>
+</body>
+</html>
